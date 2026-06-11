@@ -8,23 +8,22 @@ const Sidebar: React.FC = () => {
   const location = useLocation();
 
   const navItems: SidebarData[] = [
-    { icon: '📄', label: 'All Notes', path: '/dashboard' },
+    { icon: '📊', label: 'Dashboard', path: '/' },
+    { icon: '🗒', label: 'All Notes', path: '/notes' },
     { icon: '👥', label: 'Shared', path: '/shared' },
     { icon: '📓', label: 'Notebooks', path: '/notebooks' },
-    { icon: '📊', label: 'Statistics', path: '/statistics' },
     { icon: '🗑️', label: 'Trash', path: '/trash' },
   ];
 
   const bottomItems = [
     { icon: '⚙️', label: 'Settings', path: '/settings' },
     { icon: '❓', label: 'Help', path: '/help' },
-  ];
+  ]; 
 
   return (
     <aside className="sidebar">
       <div className="sidebar-top">
         <div className="sidebar-logo">
-          <span>📝</span>
           <div>
             <h3>Notes App</h3>
             <p>Personal Workspace</p>
@@ -48,6 +47,7 @@ const Sidebar: React.FC = () => {
           ))}
         </nav>
       </div>
+
 
       <div className="sidebar-bottom">
         {bottomItems.map((item) => (

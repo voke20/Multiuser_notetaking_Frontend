@@ -1,11 +1,8 @@
 import React from 'react';
 import './AuthLayout.css'
+import type { LayoutProps } from '../../Type/type';
 
-interface AuthLayoutProps {
-    children: React.ReactNode;
-}
-
-const AuthLayout = ({children} : AuthLayoutProps ) => {
+const AuthLayout: React.FC<LayoutProps> = ({children})  => {
     return (
         <div className="auth-container">
             {/* left panel */}

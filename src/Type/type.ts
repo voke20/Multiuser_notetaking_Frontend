@@ -13,7 +13,7 @@ export interface SharedItem {
   lastModified: string;
 }
 
-export interface UserData {
+export interface UserData {   
   name: string;
 }
 
@@ -21,4 +21,8 @@ export interface SidebarData {
   icon: string;
   label: string;
   path: string;
+}
+
+export interface LayoutProps {
+  children: React.ReactNode
 }

@@ -11,15 +11,15 @@ const Navbar: React.FC = () => {
         <input type="text" name="" placeholder='Search notes....' />
       </div>
       
-      <div className="nay-tabs">
+      <div className="nav-tabs">
         <button className="tab active">Recent</button>
-        <button className="tab"></button>
+        <button className="tab pin">Pinned</button>
       </div>
 
-      <div className="nav-rig">
+      <div className="nav-right">
         <button className="nav-bell">🕭</button>
-        <button className="export">Export</button>
-        <button className="share-note primary">Share</button>
+        <button className="nav-btn">Export</button>
+        <button className="nav-btn primary">Share</button>
         <div className="nav-avatar">A</div>
       </div>
     </nav>
