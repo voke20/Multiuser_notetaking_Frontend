@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
                     </div>
 
                     <div className="stat-card">
-                        <span className="stat-icon shares">👥</span>
+                        <span className="stat-icon shares">🖄</span>
                         <div className="labels">
                             <p className="stat-label">SHARES</p>
                             <h2 className="stat-value">18</h2>

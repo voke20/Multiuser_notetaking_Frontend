@@ -1,13 +1,13 @@
 import React from "react";
 import DashboardLayout from "../../../Components/Layout/Layout";
-import './EditNote.css'
+import './MyShared.css'
 
-const EditNote: React.FC = () => {
+const MySharedNotes: React.FC = () => {
     return (
         <DashboardLayout>
-            <h1>Edit Note</h1>
+            <h1>Notes i have shared</h1>
         </DashboardLayout>
     );
 };
 
-export default EditNote;
+export default MySharedNotes;
