@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
-
+import ShareNote from '../../Pages/Notes/ShareNote/ShareNote';
 
 const Navbar: React.FC = () => {
+  const [shareModalOpen, setShareModalOpen] = useState(false);
   return (
     <nav className= "navbar">
 
@@ -19,7 +20,8 @@ const Navbar: React.FC = () => {
       <div className="nav-right">
         <button className="nav-bell">🕭</button>
         <button className="nav-btn">Export</button>
-        <button className="nav-btn primary">Share</button>
+        <button className='nav-btn primary' onClick={() => setShareModalOpen(true)}>Share</button>
+        <ShareNote isOpen={shareModalOpen} onClose={() => setShareModalOpen(false)} />
         <div className="nav-avatar">A</div>
       </div>
     </nav>

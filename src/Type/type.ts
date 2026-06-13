@@ -6,13 +6,6 @@ export interface CategoryNote {
     timeAgo: string;
 }
 
-export interface SharedItem {
-  id: string;
-  name: string;
-  owner: string;
-  lastModified: string;
-}
-
 export interface UserData {   
   name: string;
 }

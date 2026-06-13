@@ -48,12 +48,11 @@ const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-
       <div className="sidebar-bottom">
         {bottomItems.map((item) => (
           <div
             key={item.path}
-            className="nav-item"
+            className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
             onClick={() => navigate(item.path)}
           >
             <span>{item.icon}</span>

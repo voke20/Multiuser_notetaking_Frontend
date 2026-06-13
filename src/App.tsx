@@ -9,6 +9,7 @@ import CreateNote from './Pages/Notes/CreateNote/CreateNote'
 import EditNote from './Pages/Notes/EditNote/EditNote'
 import SharedNotes from './Pages/Notes/SharedNotes/SharedNote'
 import MySharedNotes from './Pages/Notes/MySharedNotes/MyShared'
+import Settings from './Pages/Settings/Settings'
 
 function App() {
   return (
@@ -37,9 +38,9 @@ function App() {
           </ProtectedRoute>
         } />
 
-        <Route path="/notes/myshared" element={
+        <Route path="/settings" element={
           <ProtectedRoute>
-            <MySharedNotes />
+            <Settings />
           </ProtectedRoute>
         } />
 
