@@ -83,7 +83,7 @@ const Dashboard: React.FC = () => {
                 <div className="section">
                     <div className="section-header">
                         <h2>Shared With Me</h2>
-                        <a href="/notes" >View All</a>
+                        <a href="/notes/shared" >View All</a>
                     </div>
                     <table className="shared-table">
                         <thead>

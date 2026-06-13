@@ -71,7 +71,7 @@ const MyNotes: React.FC = () => {
               <div className="note-card-header">
                 <span className={`note-tag ${note.category.toLowerCase()}`}>
                   {note.category}
-                </span>
+                </span> 
                 {note.pinned && <span className="lock-icon">🖈</span>}
               </div>
               <h3>{note.title}</h3>
@@ -82,7 +82,7 @@ const MyNotes: React.FC = () => {
                     <button className="action-btn edit" onClick={() => handleEdit(note.id)}>
                         ✎ Edit
                     </button>
-                    <button className="action-btn delete" onClick={() => handleDelete(note.id)}>
+                    <button className="action-btn deleted" onClick={() => handleDelete(note.id)}>
                         🗑 Delete
                     </button>
                 </div>
