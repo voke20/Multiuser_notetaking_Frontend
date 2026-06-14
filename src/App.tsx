@@ -11,6 +11,7 @@ import SharedNotes from './Pages/Notes/SharedNotes/SharedNotes'
 import Settings from './Pages/Settings/Settings'
 import SendEmail from './Pages/SendEmail/SendEmail'
 import ViewNote from './Pages/Notes/ViewNotes/ViewNote'
+import Statistics from './Pages/Statictics/Statictics'
 
 function App() {
   return (
@@ -72,6 +73,12 @@ function App() {
         <Route path="/notes/sendemail" element={
           <ProtectedRoute>
             <SendEmail />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/notes/statistics" element={
+          <ProtectedRoute>
+            <Statistics />
           </ProtectedRoute>
         } />
       </Routes>

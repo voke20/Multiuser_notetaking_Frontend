@@ -76,21 +76,18 @@
   color: #999;
 }
 
-/* Notes Grid */
 .notes-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 30px;
   overflow-y: auto;
   flex: 1;
-  margin: 20px;
-  padding: 10px;
 }
 
 .note-card {
   background: white;
   border-radius: 12px;
-  padding: 18px;
+  padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   cursor: pointer;
   transition: transform 0.2s;
@@ -166,7 +163,40 @@
   color: #999;
 }
 
-/* FAB */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.page-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.page-buttons button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+.page-buttons button.active {
+  background: #6b3fa0;
+  color: white;
+  border-color: #6b3fa0;
+}
+
+.page-buttons button.next-page {
+  color: #6b3fa0;
+}
+
 .fab {
   position: fixed;
   bottom: 32px;

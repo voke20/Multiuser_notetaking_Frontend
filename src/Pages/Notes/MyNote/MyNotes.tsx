@@ -60,13 +60,12 @@ const MyNotes: React.FC = () => {
               >
                 {filter}
               </button>
-            ))}
+            ))} 
           </div>
 
           <span className="notes-count">Showing {filteredNotes.length} notes</span>
         </div>
 
-        {/* Notes Grid */}
         <div className="notes-grid">
           {filteredNotes.map(note => (
             <div key={note.id} className="note-card">
@@ -93,7 +92,15 @@ const MyNotes: React.FC = () => {
           ))}
         </div>
 
-        {/* FAB */}
+        <div className="pagination">
+          <p>Showing Notes</p>
+          <div className="page-buttons">
+            <button className='next-page'>{'<'}</button>
+            <button className="active">1</button>
+            <button className='next-page'>{'>'}</button>
+          </div>
+        </div>
+
         <button className="fab">+</button>
 
       </div>

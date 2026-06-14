@@ -79,14 +79,7 @@ const Dashboard: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="pagination">
-                        <p>Showing Notes</p>
-                        <div className="page-buttons">
-                        <button className='next-page'>{'<'}</button>
-                        <button className="active">1</button>
-                        <button className='next-page'>{'>'}</button>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div className="section">

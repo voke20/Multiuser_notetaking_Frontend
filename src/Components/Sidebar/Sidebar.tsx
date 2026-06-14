@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
     { icon: '🗒', label: 'All Notes', path: '/notes' },
     { icon: '🖄', label: 'Shared', path: '/notes/shared' },
     { icon: '📓', label: 'Send Email', path: '/notes/sendemail' },
-    { icon: '🗠', label: 'Statistics', path: '/notes/statitics' },
+    { icon: '🗠', label: 'Statistics', path: '/notes/statistics' },
   ];
 
   const bottomItems = [
