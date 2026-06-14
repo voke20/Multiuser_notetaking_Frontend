@@ -249,3 +249,69 @@
   font-size: 0.75rem;
   color: #999;
 }
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.add-cat-btn {
+  padding: 8px 16px;
+  background: #6b3fa0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.new-category-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.new-category-input input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+.new-category-input button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.new-category-input button:first-of-type {
+  background: #6b3fa0;
+  color: white;
+}
+
+.new-category-input button:last-of-type {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.empty-text {
+  color: #999;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 20px 0;
+}

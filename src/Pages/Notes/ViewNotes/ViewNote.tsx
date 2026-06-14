@@ -1,40 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import DashboardLayout from '../../../Components/Layout/Layout';
 import './ViewNote.css';
+import { GetNoteById, DeleteNote } from '../../../services/noteservices';
+import type { NoteData } from '../../../Type/type';
 
 const ViewNote: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [note, setNote] = useState<NoteData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const note = {
-    id: Number(id),
-    title: 'Refining the Knowledge Management Architecture',
-    content: `
-      <p>The current architecture for Lumina's Knowledge Management system requires a shift from a centralized silo model to a distributed graph-based structure.</p>
-      <h2>Proposed Structural Changes</h2>
-      <ul>
-        <li>Decouple metadata storage from binary blobs to improve search indexing speed by 40%</li>
-        <li>Implement a bidirectional linking system using a vector-embedded context layer</li>
-        <li>Introduce a 'Canvas' mode for non-linear thought mapping</li>
-      </ul>
-      <blockquote>The goal isn't just to store information, but to facilitate the synthesis of new insights through organic discovery paths.</blockquote>
-    `,
-    lastEdited: '2 hours ago',
-    views: 4,
-    tags: ['architecture', 'knowledge-graph', '#roadmap-2024'],
-    category: 'Architecture',
-    breadcrumb: 'Knowledge Base',
+  useEffect(() => {
+    fetchNote();
+  }, [id]);
+
+  const fetchNote = async() => {
+    try {
+      setLoading(true);
+      const data = await GetNoteById(Number(id));
+      setNote(data);
+    } catch (err: any) {
+      setError(err.message || "Failed to load note");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const handleDelete = async () => {
+    try {
+      await DeleteNote(Number(id));
+      navigate('/notes');
+    } catch (err: any) {
+      setError(err.message || 'Failed to delete note');
+    }
+  };
+
+  if (loading) return <DashboardLayout><p className="loading">Loading note...</p></DashboardLayout>;
+  if (error) return <DashboardLayout><p className="error-message">{error}</p></DashboardLayout>;
+  if (!note) return <DashboardLayout><p>Note not found</p></DashboardLayout>;
+  
 
   return (
     <DashboardLayout>
       <div className="viewnote-page">
 
         <div className="breadcrumb">
-          <span onClick={() => navigate('/')}>Knowledge Base</span>
-          <span> › </span>
-          <span className="active">{note.category}</span>
+          <span onClick={() => navigate('/notes')}>My Notes</span>
+          <span> , </span>
+          <span className="active">{note.title}</span>
         </div>
 
         <div className="viewnote-container">
@@ -42,44 +57,25 @@ const ViewNote: React.FC = () => {
           <div className="viewnote-main">
 
             <div className="viewnote-meta">
-              <span>📅 Last edited {note.lastEdited}</span>
-              <span>👁️ {note.views} views</span>
+              <span>Last edited {new Date (note.update_at).toLocaleDateString()}</span>
+              <span>📝 {note.content_type}</span>
+              {note.is_pinned && <span>📌 Pinned</span>}
             </div>
 
             <h1 className="viewnote-title">{note.title}</h1>
 
             <div className="viewnote-actions">
-              <button onClick={() => navigate(`/notes/edit/${id}`)}>✏️ Edit</button>
-              <button className="delete">🗑️ Delete</button>
-              <button>📤 Share</button>
-              <button>📧 Send Email</button>
+              <button onClick={() => navigate(`/notes/edit/${id}`)}>Edit</button>
+              <button className="delete" onClick={handleDelete}>Delete</button>
+              {/* <button onClick={()=> navigate(`/notes`)}>📤 Share</button> */}
+              <button onClick={() => navigate(`/notes/${id}/send-email`)}>Send Email</button>
             </div>
 
             <div
               className="viewnote-content"
               dangerouslySetInnerHTML={{ __html: note.content }}
-            />
+            /> 
 
-            <div className="viewnote-tags">
-              <h3>ENTITIES & TAGS</h3>
-              <div className="tags-list">
-                {note.tags.map((tag, index) => (
-                  <span key={index} className="tag">{tag}</span>
-                ))}
-              </div>
-            </div>
-
-          </div>
-
-          <div className="viewnote-sidebar">
-            <div className="attachment-preview">
-              <div className="attachment-header">
-                <span>📄 Architecture v2 Draft.pdf</span>
-              </div>
-              <div className="attachment-thumb">
-                <p>PDF Preview</p>
-              </div>
-            </div>
           </div>
 
         </div>
