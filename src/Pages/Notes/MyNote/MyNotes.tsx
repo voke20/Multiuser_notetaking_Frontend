@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import DashboardLayout from "../../../Components/Layout/Layout";
 import './MyNotes.css';
+import { useNavigate } from "react-router-dom";
 
 
 const MyNotes: React.FC = () => {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('All');
 
   const filters = ['All', 'Research', 'Drafts', 'Personal'];
@@ -22,7 +24,7 @@ const MyNotes: React.FC = () => {
     : notes.filter(note => note.category === activeFilter);
 
     const handleEdit = (id: number) => {
-    console.log('Edit note:', id);
+    navigate(`notes/edit/${id}`)
     };
 
     const handleDelete = (id: number) => {

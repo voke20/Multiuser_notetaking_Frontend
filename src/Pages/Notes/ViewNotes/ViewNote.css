@@ -1,0 +1,165 @@
+.viewnote-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: #999;
+  cursor: pointer;
+}
+
+.breadcrumb .active {
+  color: #6b3fa0;
+  font-weight: 600;
+}
+
+.viewnote-container {
+  display: flex;
+  gap: 24px;
+}
+
+.viewnote-main {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.viewnote-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.viewnote-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.viewnote-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.viewnote-actions button {
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.viewnote-actions button:hover {
+  background: #f5f0ff;
+  border-color: #6b3fa0;
+  color: #6b3fa0;
+}
+
+.viewnote-actions button.delete:hover {
+  background: #fff0f0;
+  border-color: #ff4444;
+  color: #ff4444;
+}
+
+.viewnote-content {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.viewnote-content h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 24px 0 12px;
+}
+
+.viewnote-content ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.viewnote-content li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.viewnote-content blockquote {
+  border-left: 3px solid #6b3fa0;
+  padding: 12px 20px;
+  background: #f5f0ff;
+  border-radius: 0 8px 8px 0;
+  color: #555;
+  font-style: italic;
+  margin: 20px 0;
+}
+
+.viewnote-tags {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.viewnote-tags h3 {
+  font-size: 0.75rem;
+  color: #999;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  padding: 6px 14px;
+  background: #f5f0ff;
+  color: #6b3fa0;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Right Sidebar */
+.viewnote-sidebar {
+  width: 280px;
+}
+
+.attachment-preview {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.attachment-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.attachment-thumb {
+  height: 200px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.9rem;
+}

@@ -1,13 +1,9 @@
-import React from "react";
-import DashboardLayout from "../../../Components/Layout/Layout";
-import './EditNote.css'
-
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import NoteEditor from '../../../Components/NoteEditor/NoteEditor';
 const EditNote: React.FC = () => {
-    return (
-        <DashboardLayout>
-            <h1>Edit Note</h1>
-        </DashboardLayout>
-    );
+  const { id } = useParams();
+  return <NoteEditor mode="edit" noteId={Number(id)} />;
 };
 
 export default EditNote;

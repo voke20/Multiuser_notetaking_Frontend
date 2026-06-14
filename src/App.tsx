@@ -7,9 +7,10 @@ import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute'
 import MyNotes from './Pages/Notes/MyNote/MyNotes'
 import CreateNote from './Pages/Notes/CreateNote/CreateNote'
 import EditNote from './Pages/Notes/EditNote/EditNote'
-import SharedNotes from './Pages/Notes/SharedNotes/SharedNote'
-import MySharedNotes from './Pages/Notes/MySharedNotes/MyShared'
+import SharedNotes from './Pages/Notes/SharedNotes/SharedNotes'
 import Settings from './Pages/Settings/Settings'
+import SendEmail from './Pages/SendEmail/SendEmail'
+import ViewNote from './Pages/Notes/ViewNotes/ViewNote'
 
 function App() {
   return (
@@ -47,6 +48,30 @@ function App() {
         <Route path="/notes/shared" element={
           <ProtectedRoute>
             <SharedNotes />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/notes/edit/:id" element={
+          <ProtectedRoute>
+            <EditNote />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/notes/create" element={
+          <ProtectedRoute>
+            <CreateNote />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/notes/:id" element={
+          <ProtectedRoute>
+            <ViewNote />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/notes/sendemail" element={
+          <ProtectedRoute>
+            <SendEmail />
           </ProtectedRoute>
         } />
       </Routes>

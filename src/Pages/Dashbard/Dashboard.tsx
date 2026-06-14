@@ -1,18 +1,18 @@
 import React from "react";
 import DashboardLayout from "../../Components/Layout/Layout";
 import './Dashboard.css';
+import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <DashboardLayout>
             <div className="dashboard-page">
-                {/* Greeting */}
                 <div className="greeting-section">
                     <h1>Good Morning, Alex</h1>
                     <p>Capture your thoughts, organize your world</p>
                 </div>
 
-                {/* Notes */}
                 <div className="stat-grid">
                     <div className="stat-card">
                         <span className="stat-icon notes">🗒</span>
@@ -53,7 +53,7 @@ const Dashboard: React.FC = () => {
                             <h3>Project X</h3>
                             <p>
                                 This talks about the plan of 2026 and my journey through out the course of the year and achievements...
-                            </p>
+                            </p> 
                         </div>
 
                         <div className="notes-card">
@@ -76,6 +76,15 @@ const Dashboard: React.FC = () => {
                             <p>
                                 Making use of Django and React to make a multiuser. note taking app where users can take notes and share via app...
                             </p>
+                        </div>
+                    </div>
+
+                    <div className="pagination">
+                        <p>Showing Notes</p>
+                        <div className="page-buttons">
+                        <button className='next-page'>{'<'}</button>
+                        <button className="active">1</button>
+                        <button className='next-page'>{'>'}</button>
                         </div>
                     </div>
                 </div>
@@ -106,9 +115,11 @@ const Dashboard: React.FC = () => {
                             </tr>
                         </tbody>
                     </table>
+
+                    
                 </div>
 
-                <button className="fab">+</button>
+                <button className="fab" onClick={() => navigate('/notes/create')} >+</button>
                 
             </div>
         </DashboardLayout>

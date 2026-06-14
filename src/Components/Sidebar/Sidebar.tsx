@@ -11,7 +11,7 @@ const Sidebar: React.FC = () => {
     { icon: '☑', label: 'Dashboard', path: '/' },
     { icon: '🗒', label: 'All Notes', path: '/notes' },
     { icon: '🖄', label: 'Shared', path: '/notes/shared' },
-    { icon: '📓', label: 'My Shared', path: '/notes/myshared' },
+    { icon: '📓', label: 'Send Email', path: '/notes/sendemail' },
     { icon: '🗠', label: 'Statistics', path: '/notes/statitics' },
   ];
 
@@ -30,7 +30,7 @@ const Sidebar: React.FC = () => {
           </div>
         </div>
 
-        <button className="new-note-btn" onClick={() => navigate('/notes/new')}>
+        <button className="new-note-btn" onClick={() => navigate('/notes/create')}>
           + New Note
         </button>
 

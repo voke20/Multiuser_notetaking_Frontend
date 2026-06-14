@@ -1,13 +1,8 @@
-import React from "react";
-import DashboardLayout from "../../../Components/Layout/Layout";
-import './CreateNote.css';
+import React from 'react';
+import NoteEditor from '../../../Components/NoteEditor/NoteEditor';
 
 const CreateNote: React.FC = () => {
-    return (
-        <DashboardLayout>
-            <h1>Create Note</h1>
-        </DashboardLayout>
-    );
+  return <NoteEditor mode="create" />;
 };
 
 export default CreateNote;

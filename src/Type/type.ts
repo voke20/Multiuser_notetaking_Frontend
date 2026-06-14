@@ -6,6 +6,11 @@ export interface CategoryNote {
     timeAgo: string;
 }
 
+export interface NoteEditorProps {
+  mode: 'create' | 'edit';
+  noteId?: number;
+}
+
 export interface UserData {   
   name: string;
 }
