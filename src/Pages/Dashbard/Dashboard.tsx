@@ -1,15 +1,73 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import DashboardLayout from "../../Components/Layout/Layout";
+import { GetDashboardStats } from "../../services/Dashboardservice";
 import './Dashboard.css';
+import type { NoteData } from "../../Type/type";
 import { useNavigate } from "react-router-dom";
+import { GetNotes } from "../../services/noteservices";
+import useAuthStore from "../../store/authstore";
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
+    const [totalNotes, setTotalNotes] = useState(0);
+    const [sharedCount, setSharedCount] = useState(0);
+    const [recentNotes, setRecentNotes] = useState<NoteData[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        fetchDashboardData();
+    }, []);
+
+    const fetchDashboardData= async() => {
+        try {
+            setLoading(true);
+            const [stats, notes] = await Promise.all([
+            GetDashboardStats(),
+            GetNotes(),
+        ]);
+        setTotalNotes(stats.totalNotes);
+        setSharedCount(stats.sharedNotes);
+        setRecentNotes(notes.slice(0, 3)); // show only 3 recent notes
+        } catch (err: any) {
+        setError(err.message || 'Failed to load dashboard');
+        } finally {
+        setLoading(false);
+        }
+    };
+
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        });
+    };
+
+    const getGreeting = (): string => {
+        const hour = new Date().getHours();
+        if (hour < 12) return 'Good Morning';
+        if (hour < 18) return 'Good Afternoon';
+        return 'Good Evening';
+    };
+
+    const { email } = useAuthStore();
+
+    const GetUsername= (): string => {
+        if(!email) return '';
+        return email.split('@')[0];
+    };
+
+    if (loading) return <DashboardLayout><p className="loading">Loading...</p></DashboardLayout>;
+    if (error) return <DashboardLayout><p className="error-message">{error}</p></DashboardLayout>;
+
+
     return (
         <DashboardLayout>
             <div className="dashboard-page">
                 <div className="greeting-section">
-                    <h1>Good Morning, Alex</h1>
+                    <h1> {getGreeting()} {GetUsername()}! </h1>
                     <p>Capture your thoughts, organize your world</p>
                 </div>
 
@@ -18,7 +76,7 @@ const Dashboard: React.FC = () => {
                         <span className="stat-icon notes">🗒</span>
                         <div className="labels">
                             <p className="stat-label">TOTAL NOTES</p>
-                            <h2 className="stat-value">124</h2>
+                            <h2 className="stat-value">{totalNotes}</h2>
                         </div>
                     </div>
 
@@ -26,7 +84,7 @@ const Dashboard: React.FC = () => {
                         <span className="stat-icon shares">🖄</span>
                         <div className="labels">
                             <p className="stat-label">SHARES</p>
-                            <h2 className="stat-value">18</h2>
+                            <h2 className="stat-value">{sharedCount}</h2>
                         </div>
                     </div>
 
@@ -34,7 +92,7 @@ const Dashboard: React.FC = () => {
                         <span className="stat-icon time">⏲</span>
                         <div className="labels">
                             <p className="stat-label">RECENT ACTIVITY</p>
-                            <h2 className="stat-value">4</h2>
+                            <h2 className="stat-value">{recentNotes.length} Today</h2>
                         </div>
                     </div>
                 </div>
@@ -42,44 +100,25 @@ const Dashboard: React.FC = () => {
                 <div className="section">
                     <div className="section-header">
                         <h2>Recent Notes</h2>
-                        <a href="/notes">View All</a>
+                        <a onClick={() => navigate('/notes')} style={{cursor: 'pointer'}} >View All</a>
                     </div>
-                    <div className="notes-grid">
-                        <div className="notes-card">
-                            <div className="note-card-header">
-                                <span className="note-tag research">RESEARCH</span>
-                                <span className="note-time">2h ago</span>
-                            </div>
-                            <h3>Project X</h3>
-                            <p>
-                                This talks about the plan of 2026 and my journey through out the course of the year and achievements...
-                            </p> 
+                    {recentNotes.length === 0 ? (
+                        <p className="empty-text">No notes yet. Create your first note!</p>
+                    ) : (
+                        <div className="notes-grid">
+                            {recentNotes.map(note => (
+                                <div
+                                key={note.id}
+                                className="note-card"
+                                onClick={() => navigate(`/notes/${note.id}`)}
+                                >
+                                <h3>{note.title}</h3>
+                                <p dangerouslySetInnerHTML={{ __html: note.content.substring(0, 80) + '...' }} />
+                                <span className="note-time">{formatDate(note.update_at)}</span>
+                                </div>
+                            ))}
                         </div>
-
-                        <div className="notes-card">
-                            <div className="note-card-header">
-                                <span className="note-tag idea">IDEA</span>
-                                <span className="note-time">Yesterday</span>
-                            </div>
-                            <h3>Tech Pitch</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero obcaecati quas voluptatem a ab labore sint at in...
-                            </p>
-                        </div>
-
-                        <div className="notes-card">
-                            <div className="note-card-header">
-                                <span className="note-tag">PROGRAMMING</span>
-                                <span className="note-time">3 days ago</span>
-                            </div>
-                            <h3>Project Note App</h3>
-                            <p>
-                                Making use of Django and React to make a multiuser. note taking app where users can take notes and share via app...
-                            </p>
-                        </div>
-                    </div>
-
-                    
+                    )}
                 </div>
 
                 <div className="section">

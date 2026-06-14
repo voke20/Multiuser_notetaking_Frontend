@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../../Components/Layout/Layout';
 import { GetCategories, CreateCategory, DeleteCategory, UpdateCategory   } from '../../services/categoryservice';
 import type { Category } from '../../Type/type';
-import './Statictics.css'
+import './Statictics.css';
+import { GetDashboardStats } from '../../services/Dashboardservice';
+
 const Statistics: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('This Month');
   const [categories, setCategories] = useState<Category[]>([]);
@@ -12,27 +14,49 @@ const Statistics: React.FC = () => {
   const [error, setError] = useState('');
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editingName, setEditingName] = useState('');
+  const [stats, setStats] = useState({
+    totalNotes: 0,
+    sharedNotes: 0,
+    totalCategories: 0,
+    weeklyNotes: [
+      { day: 'Sun', count: 1 },
+      { day: 'Mon', count: 4 },
+      { day: 'Tue', count: 7 },
+      { day: 'Wed', count: 3 },
+      { day: 'Thu', count: 8 },
+      { day: 'Fri', count: 5 },
+      { day: 'Sat', count: 2 },
+    ]
+  });
+
+  
+
+  const fetchstats = async () => {
+    try {
+      setLoading(true);
+      const data = await GetDashboardStats(activeFilter);
+      setStats(data);
+    } catch (err: any) {
+      setError(err.message || 'Failed to fetch stats');
+    }finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchstats();
+  }, [activeFilter]);
 
   const filters = ['This Week', 'This Month', 'This Year', 'All Time'];
 
-  const stats = [
-    { icon: '📄', label: 'Total Notes', value: '124', change: '+12 this month' },
-    { icon: '👥', label: 'Notes Shared', value: '18', change: '+3 this week' },
-    { icon: '📂', label: 'Categories', value: categories.length.toString(), change: '' },
-    { icon: '📎', label: 'Attachments', value: '34', change: '+5 this month' },
+  const statsCard = [
+    { icon: '📄', label: 'Total Notes', value: stats.totalNotes, change: '+12 this month' },
+    { icon: '👥', label: 'Notes Shared', value: stats.sharedNotes, change: '+3 this week' },
+    { icon: '📂', label: 'Categories', value: stats.totalCategories.toString(), change: '' },
   ];
 
-  const weeklyNotes = [
-    { day: 'Mon', count: 4 },
-    { day: 'Tue', count: 7 },
-    { day: 'Wed', count: 3 },
-    { day: 'Thu', count: 8 },
-    { day: 'Fri', count: 5 },
-    { day: 'Sat', count: 2 },
-    { day: 'Sun', count: 1 },
-  ];
 
-  const maxCount = Math.max(...weeklyNotes.map(n => n.count));
+  const maxCount = Math.max(...stats.weeklyNotes.map(n => n.count), 1);
 
   useEffect(() => {
     fetchCategories();
@@ -111,7 +135,7 @@ const Statistics: React.FC = () => {
 
         {/* Stats Cards */}
         <div className="stats-grid">
-          {stats.map((stat, index) => (
+          {statsCard.map((stat, index) => (
             <div key={index} className="stat-card">
               <div className="stat-icon">{stat.icon}</div>
               <div className="stat-info">
@@ -130,7 +154,7 @@ const Statistics: React.FC = () => {
             <h2>Notes Created This Week</h2>
             <p>Daily breakdown of your writing activity</p>
             <div className="bar-chart">
-              {weeklyNotes.map((day, index) => (
+              {stats.weeklyNotes.map((day, index) => (
                 <div key={index} className="bar-item">
                   <div className="bar-wrapper">
                     <div
