@@ -1,0 +1,85 @@
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 16px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.sidebar-logo h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.sidebar-logo p {
+  font-size: 0.75rem;
+  color: #999;
+  margin: 0;
+}
+
+.new-note-btn {
+  width: 100%;
+  padding: 12px;
+  background: #6b3fa0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: background 0.2s;
+}
+
+.new-note-btn:hover {
+  background: #5a3490;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+  transition: background 0.2s;
+}
+
+.nav-item:hover {
+  background: #f5f0ff;
+  color: #6b3fa0;
+}
+
+.nav-item.active {
+  background: #6b3fa0;
+  color: white;
+}
+
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
