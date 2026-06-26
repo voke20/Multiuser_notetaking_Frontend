@@ -1,7 +1,8 @@
 export interface AuthState {
     accessToken: string | null;
     refreshToken: string | null;
-    setTokens: (access: string, refresh: string) => void;
+    email: string | null;
+    setTokens: (access: string, refresh: string, email: string) => void;
     clearTokens: () => void;
     isAuthenticated: () => boolean;
 }

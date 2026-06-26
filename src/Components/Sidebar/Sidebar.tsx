@@ -8,30 +8,29 @@ const Sidebar: React.FC = () => {
   const location = useLocation();
 
   const navItems: SidebarData[] = [
-    { icon: '📄', label: 'All Notes', path: '/dashboard' },
-    { icon: '👥', label: 'Shared', path: '/shared' },
-    { icon: '📓', label: 'Notebooks', path: '/notebooks' },
-    { icon: '📊', label: 'Statistics', path: '/statistics' },
-    { icon: '🗑️', label: 'Trash', path: '/trash' },
+    { icon: '☑', label: 'Dashboard', path: '/' },
+    { icon: '🗒', label: 'All Notes', path: '/notes' },
+    { icon: '🖄', label: 'Shared', path: '/notes/shared' },
+    { icon: '📓', label: 'Send Email', path: '/notes/sendemail' },
+    { icon: '🗠', label: 'Statistics', path: '/notes/statistics' },
   ];
 
   const bottomItems = [
-    { icon: '⚙️', label: 'Settings', path: '/settings' },
-    { icon: '❓', label: 'Help', path: '/help' },
-  ];
+    { icon: '⚙', label: 'Settings', path: '/settings' },
+    { icon: '', label: 'Logout', path: '/logout' },
+  ]; 
 
   return (
     <aside className="sidebar">
       <div className="sidebar-top">
         <div className="sidebar-logo">
-          <span>📝</span>
           <div>
             <h3>Notes App</h3>
             <p>Personal Workspace</p>
           </div>
         </div>
 
-        <button className="new-note-btn" onClick={() => navigate('/notes/new')}>
+        <button className="new-note-btn" onClick={() => navigate('/notes/create')}>
           + New Note
         </button>
 
@@ -53,7 +52,7 @@ const Sidebar: React.FC = () => {
         {bottomItems.map((item) => (
           <div
             key={item.path}
-            className="nav-item"
+            className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
             onClick={() => navigate(item.path)}
           >
             <span>{item.icon}</span>

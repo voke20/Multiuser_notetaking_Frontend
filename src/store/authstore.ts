@@ -7,12 +7,13 @@ const useAuthStore = create<AuthState>() (
         (set, get) => ({
             accessToken: null,
             refreshToken: null,
+            email: null,
 
-            setTokens: (access, refresh) => {
-                set({ accessToken: access, refreshToken: refresh});
+            setTokens: (access, refresh, email) => {
+                set({ accessToken: access, refreshToken: refresh, email});
             },
             clearTokens: () => {
-                set({accessToken: null, refreshToken: null})
+                set({accessToken: null, refreshToken: null, email: null })
             },
             isAuthenticated: () => {
                 return get().accessToken !== null;

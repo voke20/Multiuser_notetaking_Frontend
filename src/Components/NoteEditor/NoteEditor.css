@@ -1,0 +1,202 @@
+.editor-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f8f8ff;
+  position: relative;
+}
+
+.editor-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.draft-status {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.save-btn {
+  padding: 8px 24px;
+  background: #6b3fa0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.editor-container {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px 24px;
+}
+
+.editor-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.editor-date {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.meta-divider {
+  color: #ccc;
+}
+
+.categories-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category-tag {
+  background: #f0e6ff;
+  color: #6b3fa0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.add-category-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px dashed #6b3fa0;
+  background: none;
+  color: #6b3fa0;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-title {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ccc;
+  background: transparent;
+  margin-bottom: 24px;
+}
+
+.editor-title:focus {
+  color: #1a1a2e;
+}
+
+.editor-stats {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: right;
+}
+
+.editor-content {
+  min-height: 400px;
+  outline: none;
+}
+
+.editor-content .ProseMirror {
+  outline: none;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  min-height: 400px;
+}
+
+.editor-content .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #ccc;
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: #999;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.stat-number {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 24px;
+  position: sticky;
+  bottom: 0;
+  background: #f8f8ff;
+}
+
+.toolbar-btn {
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.toolbar-btn:hover {
+  background: #f0e6ff;
+  color: #6b3fa0;
+}
+
+.toolbar-btn.active {
+  background: #6b3fa0;
+  color: white;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #e0e0e0;
+  margin: 0 4px;
+}
+

@@ -51,7 +51,7 @@ const Login = () => {
 
         try {
             const data = await loginUser({ email, password });
-            setTokens(data.access, data.refresh);
+            setTokens(data.access, data.refresh, email);
             navigate('/');
         } catch (err: any) {
             setError(err.message || "Login Failed");
@@ -68,21 +68,6 @@ const Login = () => {
                 <p>Please enter your details to sign in</p>
 
                 {error && <p className = "error-message">{error}</p>}
-
-                {/* <div className="social-buttons">
-                    <button className="btn-social">
-                        <img src="https://www.google.com/favicon.ico" alt="Google" />
-                        Google
-                    </button>
-                    <button className="btn-social">
-                        <img src="" alt="" />
-                        🍎 Apple
-                    </button>
-                </div> 
-
-                <div className="divider">
-                    <span>Or EMAIL</span>
-                </div> */}
 
                 <form action="" onSubmit={handleSubmit}>
                     <div className="form-group">
